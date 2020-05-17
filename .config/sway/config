@@ -6,7 +6,7 @@
 font pango:JetBrainsMono Nerd Font 14
 set $mod Mod4
 set $term kitty --listen-on=unix:/tmp/mykitty
-set $menu dmenu-wl_run -b -i -h 40 -fn JetBrainsMono\ Nerd\ Font\ 20
+set $menu rofi -show drun -font "JetBrainsMono Nerd Font 16"
 focus_follows_mouse no
 for_window [class="^.*"] border pixel 1
 default_border pixel 1
@@ -62,12 +62,6 @@ exec swayidle -w \
 	     timeout 900 'swaymsg "output * dpms off"' \
 	     resume 'swaymsg "output * dpms on"' \
 	     before-sleep 'swaylock -f -c 000000'
-
-exec --no-startup-id swaymsg 'workspace $ws10; exec signal-desktop'
-exec --no-startup-id swaymsg 'workspace $ws10; exec firefox --new-window web.whatsapp.com'
-exec --no-startup-id swaymsg 'workspace $ws10; exec spotify'
-exec --no-startup-id swaymsg 'workspace $ws10; exec lollypop'
-for_window [workspace=$ws10] layout tabbed
 
 ################################
 # KEYBINDINGS ##################
@@ -195,7 +189,6 @@ bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, re
 
 # custom windows
 for_window [app_id="pavucontrol"] floating enable, resize set 600 900
-for_window [class="Signal"] move container to workspace $ws10
 
 #
 # Resizing containers:
