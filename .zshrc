@@ -68,6 +68,7 @@ alias cat="bat"
 alias find="fd"
 
 alias cloud="ssh smoothlife@hetzner -p 32349"
+alias home="ssh sergiu@192.168.1.130"
 
 alias start_jupyter="sudo systemctl start docker-compose@jupyter.service"
 alias status_jupyter="sudo systemctl status docker-compose@jupyter.service"

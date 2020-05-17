@@ -213,23 +213,11 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='medium'
 
-Plug 'fatih/molokai'
-Plug 'NLKNguyen/papercolor-theme'
-
 call plug#end()
 
 "Theming
 set termguicolors "sets to true colors
 let &t_ut=''
 
-let hr=(strftime('%H'))
-if hr >=21
-    set background=dark
-    colorscheme gruvbox
-elseif hr >=8
-    set background=light
-    colorscheme PaperColor
-elseif hr >= 0
-    set background=dark
-    colorscheme gruvbox
-endif
+set background=dark
+colorscheme gruvbox

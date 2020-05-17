@@ -1,10 +1,10 @@
 [{
-    "output": "DP-2",
+    "output": "eDP-1",
     "layer": "bottom",
     "position": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["custom/storage_root", "custom/storage_home", "custom/storage_extra", "pulseaudio", "clock", "tray"],
+    "modules-right": ["custom/storage_root", "custom/storage_home", "custom/storage_extra", "pulseaudio", "clock", "battery", "tray"],
 
     "sway/window": {
         "max-length": 50
@@ -54,6 +54,17 @@
             "disconnected": [""]
         },
         "tooltip": false
+    },
+
+    "battery": {
+        "bat": "BAT2",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "max-length": 25
     },
 
     "custom/storage_root": {

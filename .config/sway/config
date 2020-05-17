@@ -3,30 +3,15 @@
 ################################
 # BASIC DEFINITIONS ############
 ################################
-font pango:JetBrainsMono Nerd Font 14
+font pango:JetBrainsMono Nerd Font 16
 set $mod Mod4
 set $term kitty --listen-on=unix:/tmp/mykitty
-set $menu dmenu-wl_run -b -i -h 40 -fn JetBrainsMono\ Nerd\ Font\ 20
+set $menu rofi -show drun -font "JetBrainsMono 16"
 focus_follows_mouse no
 for_window [class="^.*"] border pixel 1
 default_border pixel 1
 
 seat seat0 xcursor_theme default 18
-
-# wallpapers 
-output DP-2 bg /shared/Wallpapers/rick-wallpaper.jpg fit
-
-################################
-# MONITOR CONFIG ###############
-################################
-
-#scale the 4k screen
-output DP-2 scale 1
-
-# enable multihead, set resolutions
-output DP-2 pos 0 0 res 3840x2160
-output HDMI-A-1 pos 3840 2160 res 1920x1080
-exec swaymsg focus output DP-2
 
 ################################
 # MACROS #######################
@@ -47,12 +32,19 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+# MONITOR CONFIG
+output eDP-1 scale 1
+output eDP-1 pos 0 0 res 2560x1600
+exec swaymsg focus output eDP-1
+
+output eDP-1 bg /home/sergiu/Pictures/blackbird-3.jpg fill
+
 
 ################################
 # STARTUP EXECUTIONS ###########
 ################################
 exec xset -b
-exec kitty --title dropdown_term -o font_size=14
+exec kitty --title dropdown_term -o font_size=16
 exec redshift -c /home/sergiu/.config/redshift/redshift.conf
 exec --no-startup-id mako --default-timeout 10000
 
@@ -62,12 +54,6 @@ exec swayidle -w \
 	     timeout 900 'swaymsg "output * dpms off"' \
 	     resume 'swaymsg "output * dpms on"' \
 	     before-sleep 'swaylock -f -c 000000'
-
-exec --no-startup-id swaymsg 'workspace $ws10; exec signal-desktop'
-exec --no-startup-id swaymsg 'workspace $ws10; exec firefox --new-window web.whatsapp.com'
-exec --no-startup-id swaymsg 'workspace $ws10; exec spotify'
-exec --no-startup-id swaymsg 'workspace $ws10; exec lollypop'
-for_window [workspace=$ws10] layout tabbed
 
 ################################
 # KEYBINDINGS ##################
@@ -191,12 +177,10 @@ bindsym $mod+Shift+minus move scratchpad
 
 # Use the scratchpad for the dropdown term
 for_window [title="dropdown_term"] move scratchpad, border pixel 3, resize set 600 600
-bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, resize set 2000 1200
+bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, resize set 1800 1200
 
 # custom windows
 for_window [app_id="pavucontrol"] floating enable, resize set 600 900
-for_window [class="Signal"] move container to workspace $ws10
-
 #
 # Resizing containers:
 #
@@ -251,7 +235,7 @@ bar {
 }
 
 # set workspace outputs
-workspace $ws1 output DP-2
+workspace $ws1 output eDP-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
