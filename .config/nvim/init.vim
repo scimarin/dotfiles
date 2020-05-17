@@ -90,9 +90,13 @@ set nobackup
 set nowritebackup
 syntax on "Syntax highlighting
 
+" Display ASCII characters numerically
+set display+=uhex
+
 " indenation options for C++; respects Google C++ Style
 set cindent
-set cinoptions=g+1,>2,h1,N-s
+"set cinoptions=g+1,>2,h1,N-s
+set cinoptions=g+1,h1,N-s
 
 "Install plug
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
@@ -178,6 +182,9 @@ Plug 'bazelbuild/vim-bazel'
 Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'sheerun/vim-polyglot' " language packs
 
+Plug 'jmcneal/verilog-support'
+Plug 'vhda/verilog_systemverilog.vim'
+
 nnoremap <c-o> :FZF<cr>
 nnoremap <leader>l :Rg<cr>
 
@@ -206,6 +213,9 @@ Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='medium'
 
+Plug 'fatih/molokai'
+Plug 'NLKNguyen/papercolor-theme'
+
 call plug#end()
 
 "Theming
@@ -213,12 +223,13 @@ set termguicolors "sets to true colors
 let &t_ut=''
 
 let hr=(strftime('%H'))
-if hr >=19
+if hr >=21
     set background=dark
+    colorscheme gruvbox
 elseif hr >=8
     set background=light
+    colorscheme PaperColor
 elseif hr >= 0
     set background=dark
+    colorscheme gruvbox
 endif
-
-colorscheme gruvbox

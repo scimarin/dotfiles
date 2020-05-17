@@ -25,6 +25,7 @@ output DP-2 scale 1
 
 # enable multihead, set resolutions
 output DP-2 pos 0 0 res 3840x2160
+output HDMI-A-1 pos 3840 2160 res 1920x1080
 exec swaymsg focus output DP-2
 
 ################################
@@ -51,7 +52,7 @@ set $ws10 "10"
 # STARTUP EXECUTIONS ###########
 ################################
 exec xset -b
-exec kitty --title dropdown_term -o font_size=16
+exec kitty --title dropdown_term -o font_size=14
 exec redshift -c /home/sergiu/.config/redshift/redshift.conf
 exec --no-startup-id mako --default-timeout 10000
 

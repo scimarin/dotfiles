@@ -67,6 +67,12 @@ alias dropdown="kitty -T dropdown_term &"
 alias cat="bat"
 alias find="fd"
 
+alias cloud="ssh smoothlife@hetzner -p 32349"
+
+alias start_jupyter="sudo systemctl start docker-compose@jupyter.service"
+alias status_jupyter="sudo systemctl status docker-compose@jupyter.service"
+alias stop_jupyter="sudo systemctl stop docker-compose@jupyter.service"
+
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
 setopt hist_ignore_space
