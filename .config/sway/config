@@ -54,7 +54,7 @@ set $ws10 "10"
 exec xset -b
 exec kitty --title dropdown_term -o font_size=14
 exec redshift -c /home/sergiu/.config/redshift/redshift.conf
-exec --no-startup-id mako --default-timeout 10000
+exec --no-startup-id mako --font=JetBrainsMono\ Nerd\ Font\ 20 --default-timeout 10000
 
 # idle configuration
 exec swayidle -w \
