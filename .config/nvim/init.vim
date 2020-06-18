@@ -180,6 +180,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 Plug 'bazelbuild/vim-bazel'
 
 Plug 'junegunn/fzf.vim' " fuzzy finder
+Plug 'BurntSushi/ripgrep'
 Plug 'sheerun/vim-polyglot' " language packs
 
 Plug 'jmcneal/verilog-support'
@@ -202,6 +203,8 @@ Plug 'jiangmiao/auto-pairs'
 
 " org-mode
 Plug 'jceb/vim-orgmode'
+
+Plug 'ihsanturk/neuron.vim'
 
 " tagging the file to easily navigate methods and classes
 Plug 'ludovicchabant/vim-gutentags'

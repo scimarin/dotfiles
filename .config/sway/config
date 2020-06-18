@@ -14,7 +14,7 @@ default_border pixel 1
 seat seat0 xcursor_theme default 18
 
 # wallpapers 
-output DP-2 bg /shared/Wallpapers/rick-wallpaper.jpg fit
+output DP-2 bg /home/sergiu/Pictures/yosemite.jpg fill
 
 ################################
 # MONITOR CONFIG ###############
@@ -57,7 +57,7 @@ exec redshift -c /home/sergiu/.config/redshift/redshift.conf
 exec --no-startup-id mako --font=JetBrainsMono\ Nerd\ Font\ 20 --default-timeout 10000
 
 # idle configuration
-exec swayidle -w \
+# exec swayidle -w \
 	     timeout 900 'swaymsg "output * dpms off"' \
 	     resume 'swaymsg "output * dpms on"'
 
