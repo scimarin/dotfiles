@@ -58,8 +58,8 @@ exec --no-startup-id mako --font=JetBrainsMono\ Nerd\ Font\ 20 --default-timeout
 
 # idle configuration
 # exec swayidle -w \
-	     timeout 900 'swaymsg "output * dpms off"' \
-	     resume 'swaymsg "output * dpms on"'
+#	     timeout 900 'swaymsg "output * dpms off"' \
+#	     resume 'swaymsg "output * dpms on"'
 
 ################################
 # KEYBINDINGS ##################
