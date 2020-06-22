@@ -200,11 +200,13 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-rooter'
 Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'alvan/vim-closetag'
 
 " org-mode
 Plug 'jceb/vim-orgmode'
 
-Plug 'ihsanturk/neuron.vim'
+"Plug 'ihsanturk/neuron.vim'
 
 " tagging the file to easily navigate methods and classes
 Plug 'ludovicchabant/vim-gutentags'
@@ -220,6 +222,22 @@ Plug 'fatih/molokai'
 Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
+
+" closetag config
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+let g:closetag_emptyTags_caseSensitive = 1
+let g:closetag_regions = {
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascript.jsx': 'jsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<leader>>'
 
 "Theming
 set termguicolors "sets to true colors
