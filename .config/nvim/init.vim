@@ -244,7 +244,7 @@ set termguicolors "sets to true colors
 let &t_ut=''
 
 let hr=(strftime('%H'))
-if hr >=21
+if hr >=23
     set background=dark
     colorscheme gruvbox
 elseif hr >=8

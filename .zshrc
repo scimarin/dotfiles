@@ -64,7 +64,7 @@ alias rsync="rsync --info=progress2"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status"
 alias dropdown="kitty -T dropdown_term &"
-alias cat="bat"
+alias cat="bat --theme=GitHub"
 alias find="fd"
 
 alias cloud="ssh smoothlife@hetzner -p 32349"

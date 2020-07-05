@@ -14,19 +14,22 @@ default_border pixel 1
 seat seat0 xcursor_theme default 18
 
 # wallpapers 
-output DP-2 bg /home/sergiu/Pictures/yosemite.jpg fill
+#output DP-2 output DP-2 bg /home/sergiu/Pictures/yosemite.jpg fill
+
+# specific window settings
+for_window [class="vlc"] floating enable
 
 ################################
 # MONITOR CONFIG ###############
 ################################
 
-#scale the 4k screen
-output DP-2 scale 1
-
 # enable multihead, set resolutions
-output DP-2 pos 0 0 res 3840x2160
-output HDMI-A-1 pos 3840 2160 res 1920x1080
+output HDMI-A-1 pos 0 300 res 1920x1080 bg /home/sergiu/Pictures/cyberpunk.jpg fit
+output DP-2 pos 2560 0 res 3840x2160 bg /home/sergiu/Pictures/cyberpunk.jpg fit
 exec swaymsg focus output DP-2
+
+output HDMI-A-1 scale 0.75
+output DP-2 scale 1
 
 ################################
 # MACROS #######################
@@ -242,7 +245,7 @@ bar {
 }
 
 # set workspace outputs
-workspace $ws1 output DP-2
+workspace $ws1 output HDMI-A-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
