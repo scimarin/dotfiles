@@ -2,6 +2,7 @@
 {
     "output": "DP-2",
         "layer": "bottom",
+        "height": 45,
         "position": "top",
         "modules-left": ["sway/workspaces", "sway/mode"],
         "modules-center": ["sway/window"],

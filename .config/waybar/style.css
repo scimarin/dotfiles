@@ -2,7 +2,7 @@
     border:        none;
     border-radius: 0;
     font-family:   JetBrainsMono Nerd Font;
-    font-size:     20px;
+    font-size:     25px;
     box-shadow:    none;
     text-shadow:   none;
     transition-duration: 0s;
@@ -19,7 +19,7 @@ window#waybar.solo {
 }
 
 #custom-simple_workspaces {
-    margin: 0 5px;
+    margin: 0 10px;
 }
 
 #custom-simple_workspaces button {
@@ -41,11 +41,11 @@ window#waybar.solo {
 }
 
 #workspaces {
-    margin: 0 10px;
+    margin: 0 5px;
 }
 
 #workspaces button {
-    padding:    0 10px;
+    padding:    0 5px;
     color:      rgba(217, 216, 216, 1);
 }
 

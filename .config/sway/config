@@ -246,6 +246,7 @@ bar {
 
 # set workspace outputs
 workspace $ws1 output HDMI-A-1
+workspace $ws5 output DP-2
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
