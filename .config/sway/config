@@ -24,7 +24,7 @@ for_window [class="vlc"] floating enable
 ################################
 
 # enable multihead, set resolutions
-output DP-2 pos 0 0 res 3840x2160 bg /home/sergiu/Pictures/aerial-mountain.jpg fill
+output DP-2 pos 0 0 res 3840x2160 bg /home/sergiu/Pictures/highway.jpg center
 exec swaymsg focus output DP-2
 
 output DP-2 scale 1
@@ -244,6 +244,7 @@ bar {
 
 # set workspace outputs
 workspace $ws1 output DP-2
+workspace $ws10 output HDMI-A-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
