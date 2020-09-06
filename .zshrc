@@ -63,8 +63,9 @@ alias la="ls -AFhNC --color=auto --group-directories-first"
 alias rsync="rsync --info=progress2"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status"
+alias gm="git commit -m"
 alias dropdown="kitty -T dropdown_term &"
-alias cat="bat --theme=GitHub"
+alias cat="bat --theme=zenburn"
 alias find="fd"
 
 alias cloud="ssh smoothlife@hetzner -p 32349"
@@ -86,11 +87,12 @@ zstyle ':completion:*' menu select
 bindkey '^ ' autosuggest-accept
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bold,underline"
 
-fe() {
-    exec < /dev/tty
-    local -r file="$(fzf)"
-    [ -n "$file" ] && ${EDITOR:-vim} "$file"
-}
+fe() (
+  exec < /dev/tty
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-nvim} "${files[@]}"
+)
+
 zle -N fe
 bindkey "^o" fe
 
@@ -104,4 +106,5 @@ fi
 # Open lf
 source ~/.config/lf/lfcd.sh
 bindkey -s "^\\" 'lfcd\n'
+
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"

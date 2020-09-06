@@ -1,20 +1,14 @@
-# sway config
-
 ################################
 # BASIC DEFINITIONS ############
 ################################
-font pango:JetBrainsMono Nerd Font 14
+#
+font pango:Hack Nerd Font Mono 14
 set $mod Mod4
 set $term kitty --listen-on=unix:/tmp/mykitty
-set $menu rofi -show drun -font "JetBrainsMono Nerd Font 16"
+set $menu rofi -font "Hack Nerd Font Mono 16" -disable-history -hide-scrollbar -show drun
 focus_follows_mouse no
 for_window [class="^.*"] border pixel 1
 default_border pixel 1
-
-seat seat0 xcursor_theme default 18
-
-# wallpapers 
-#output DP-2 output DP-2 bg /home/sergiu/Pictures/yosemite.jpg fill
 
 # specific window settings
 for_window [class="vlc"] floating enable
@@ -25,9 +19,37 @@ for_window [class="vlc"] floating enable
 
 # enable multihead, set resolutions
 output DP-2 pos 0 0 res 3840x2160 bg /home/sergiu/Pictures/highway.jpg center
-exec swaymsg focus output DP-2
-
 output DP-2 scale 1
+
+output HDMI-A-1 pos 3840 200 res 1920x1080
+output HDMI-A-1 transform 90
+output HDMI-A-1 scale 1
+
+exec swaymsg focus output DP-2
+################################
+# STARTUP EXECUTIONS ###########
+###############################
+exec xset -b
+exec kitty --title dropdown_term -o font_size=14
+exec redshift -c /home/sergiu/.config/redshift/redshift.conf
+exec --no-startup-id mako --font=JetBrainsMono\ Nerd\ Font\ 20 --default-timeout 10000 --width=60 --height=350
+exec spotify
+
+exec swaymsg 'workspace $ws1; exec firefox -p Work'
+exec swaymsg 'workspace $ws2; exec code --folder-uri /home/sergiu/code/withthegrid/platform/'
+exec swaymsg 'workspace $ws3; exec $term'
+
+exec swaymsg 'workspace $ws5; exec firefox -p Home'
+
+exec swaymsg 'workspace $ws8; exec firefox -p Netdata --ssb https://hiddenaway.xyz/netdata/'
+
+exec swaymsg 'workspace $ws10; exec signal-desktop'
+exec swaymsg 'workspace $ws10; exec firefox -p Whatsapp --ssb https://web.whatsapp.com'
+
+# idle configuration
+# exec swayidle -w \
+#	     timeout 900 'swaymsg "output * dpms off"' \
+#	     resume 'swaymsg "output * dpms on"'
 
 ################################
 # MACROS #######################
@@ -37,32 +59,31 @@ set $down j
 set $up k
 set $right l
 
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-
-
-################################
-# STARTUP EXECUTIONS ###########
-################################
-exec xset -b
-exec kitty --title dropdown_term -o font_size=14
-exec redshift -c /home/sergiu/.config/redshift/redshift.conf
-exec --no-startup-id mako --font=JetBrainsMono\ Nerd\ Font\ 20 --default-timeout 10000
-
-# idle configuration
-# exec swayidle -w \
-#	     timeout 900 'swaymsg "output * dpms off"' \
-#	     resume 'swaymsg "output * dpms on"'
+set $ws1 "01 "
+set $ws2 "02 "
+set $ws3 "03 "
+set $ws4 "04 "
+set $ws5 "05 "
+set $ws6 "06 "
+set $ws7 "07 "
+set $ws8 "08 "
+set $ws9 "09 "
+set $ws10 "10 "
 
 ################################
+# WINDOWS ######################
+################################
+
+for_window [app_id="stats"] move container to workspace $ws10, resize set height 400
+for_window [title="dropdown_term"] move scratchpad, border pixel 3, resize set 600 600
+for_window [class="Spotify"] move scratchpad, fullscreen enable
+for_window [class="mpv"] floating enable, sticky enable
+for_window [class="Signal"] move container to workspace $ws10
+for_window [class="code-oss"] move container to workspace $ws2
+for_window [app_id="pavucontrol"] floating enable, resize set 600 900
+for_window [title="Whatsapp"] move container to workspace $ws10
+
+###############################
 # KEYBINDINGS ##################
 ################################
 
@@ -71,12 +92,16 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
 
+## Dropdown Spotify
+bindsym $mod+m [class="Spotify"] scratchpad show, fullscreen enable
+
 # screenshots
 bindsym Print exec grim -g "$(slurp -d)" - | wl-copy -t image/png && notify-send "Screenshot taken"
 bindsym control+Print exec grim -g "$(slurp -d)" - | 0x0
 
 # show clipboard contents
 bindsym $mod+Insert exec --no-startup-id notify-send -t 2000 "$(wl-paste)"
+
 # upload clipboard contents
 bindsym $mod+Shift+Insert exec wl-paste | 0x0
 
@@ -120,29 +145,29 @@ bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
-# Switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
-# Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Note: workspaces can have any name you want, not just numbers.
 # We just use 1-10 as the default.
@@ -183,11 +208,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+minus move scratchpad
 
 # Use the scratchpad for the dropdown term
-for_window [title="dropdown_term"] move scratchpad, border pixel 3, resize set 600 600
-bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, resize set 2000 1200
-
-# custom windows
-for_window [app_id="pavucontrol"] floating enable, resize set 600 900
+bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, resize set 2200 1400
 
 #
 # Resizing containers:
@@ -197,16 +218,16 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
+    bindsym $right resize shrink width 10px
     bindsym $down resize grow height 10px
     bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym $left resize grow width 10px
 
     # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
+    bindsym Right resize shrink width 10px
     bindsym Down resize grow height 10px
     bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym Left resize grow width 10px
 
     # Return to default mode
     bindsym Return mode "default"
@@ -216,23 +237,23 @@ bindsym $mod+r mode "resize"
 
 ## System bindings
 # Increase Volume
-bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +1000 && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +1000"
 
 # Decrease volume
-bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -1000 && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -1000"
 
 # Mute volume
-bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks"
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
-bindsym $mod+period exec "pactl set-sink-volume @DEFAULT_SINK@ +1000 && pkill -RTMIN+10 i3blocks"
-bindsym $mod+comma exec "pactl set-sink-volume @DEFAULT_SINK@ -1000 && pkill -RTMIN+10 i3blocks"
-bindsym $mod+slash exec "pactl set-sink-mute @DEFAULT_SINK@ toggle && pkill -RTMIN+10 i3blocks"
+bindsym $mod+period exec "pactl set-sink-volume @DEFAULT_SINK@ +1000"
+bindsym $mod+comma exec "pactl set-sink-volume @DEFAULT_SINK@ -1000"
+bindsym $mod+slash exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 
-bindsym $mod+p exec "playerctl play-pause && pkill -RTMIN+8 i3blocks"
+bindsym $mod+p exec "playerctl play-pause"
 
 #
 # Status Bar:
@@ -244,6 +265,10 @@ bar {
 
 # set workspace outputs
 workspace $ws1 output DP-2
+workspace $ws5 output DP-2
+
+workspace $ws8 output HDMI-A-1
+workspace $ws9 output HDMI-A-1
 workspace $ws10 output HDMI-A-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
@@ -261,23 +286,48 @@ mode "$mode_system" {
 
 bindsym control+Delete mode "$mode_system"
 
-## Colorschemes
+################################
+# Bars and Colors ##############
+################################
 # set primary gruvbox colorscheme colors
+# bg
+set $bgd        #282828
+set $bgs        #32302f
+set $bg1        #3c3836
+set $bg2        #504945
+set $bg3        #665c54
+# fg
+set $fg3        #bdae93
+set $fg2        #d5c4a1
+set $fg1        #ebdbb2
+set $fg0        #fbf1c7
+# colors
+set $red        #cc241d
+set $green      #b8bb26
+set $yellow     #fabd2f
+set $blue       #83a598
+set $purple     #d3869b
+set $aqua       #83c07c
+set $orange     #d65d0e
 
-set $bg #282828
-set $red #cc241d
-set $green #98971a
-set $yellow #d79921
-set $blue #458588
-set $purple #b16286
-set $aqua #689d68
-set $gray #a89984
-set $darkgray #1d2021
-set $orange #d65d0e
+# class border          |border |backgr |text   |indicator  |child_border
+client.focused          $blue   $blue   $bgs    $orange     $blue
+client.focused_inactive $bg2    $bg2    $fg3    $fg3        $bg2
+client.unfocused        $bg2    $bgd    $fg3    $bg3        $bg2
+client.urgent           $red    $red    $bgs    $red        $red
+
+################################
+# Inputs ######################
+################################
 
 input type:keyboard {
   repeat_delay 400
   repeat_rate 50
+}
+
+input type:pointer {
+    scroll_factor 5.0
+    dwt enable
 }
 
 include /etc/sway/config.d/*

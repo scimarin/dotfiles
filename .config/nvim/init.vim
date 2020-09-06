@@ -220,6 +220,7 @@ let g:gruvbox_contrast_light='medium'
 
 Plug 'fatih/molokai'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'elzr/vim-json'
 
 call plug#end()
 
@@ -243,14 +244,17 @@ let g:closetag_close_shortcut = '<leader>>'
 set termguicolors "sets to true colors
 let &t_ut=''
 
-let hr=(strftime('%H'))
-if hr >=23
-    set background=dark
-    colorscheme gruvbox
-elseif hr >=8
-    set background=light
-    colorscheme PaperColor
-elseif hr >= 0
-    set background=dark
-    colorscheme gruvbox
-endif
+set background=dark
+colorscheme gruvbox
+
+"let hr=(strftime('%H'))
+"if hr >=18
+    "set background=dark
+    "colorscheme gruvbox
+"elseif hr >=8
+    "set background=light
+    "colorscheme PaperColor
+"elseif hr >= 0
+    "set background=dark
+    "colorscheme gruvbox
+"endif
