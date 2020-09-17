@@ -1,0 +1,92 @@
+{
+    "output": "eDP-1",
+        "layer": "bottom",
+        "height": 25,
+        "position": "top",
+        "modules-left": ["sway/workspaces", "sway/mode"],
+        "modules-center": ["sway/window"],
+        "modules-right": ["custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray", "battery"],
+
+        "sway/window": {
+            "max-length": 50
+        },
+
+        "sway/workspaces": {
+            "format": "{name}",
+            "disable-scroll-wraparound": true,
+            "enable-bar-scroll": true,
+            "smooth-scrolling-threshold": 30
+        },
+
+        "clock": {
+            "interval": 60,
+            "format": "{:%d.%m.%y %a %H:%M}"
+        },
+
+        "tray": {
+            "icon-size": 18
+        },
+
+        "pulseaudio": {
+            "format": "{volume} {icon}",
+            "format-alt": "{volume} {icon}",
+            "format-alt-click": "click-right",
+            "format-muted": "",
+            "format-icons": {
+                "headphones": "",
+                "handsfree": "",
+                "headset": "",
+                "phone": "",
+                "portable": "",
+                "car": "",
+                "default": ["", "", ""]
+            },
+            "scroll-step": 5,
+            "on-click": "pavucontrol"
+        },
+
+        "backlight": {
+            "format": "{percent} ⚇"
+        },
+
+        "network": {
+            "format-wifi": "{icon}",
+            "format-alt": "{ipaddr}/{cidr} {icon}",
+            "format-alt-click": "click-right",
+            "format-icons": {
+                "wifi": [" "],
+                "ethernet": [""],
+            },
+            "tooltip": false,
+        },
+
+        "battery": {
+            "interval": 60,
+            "states": {
+                "full": 100,
+                "used": 80,
+                "critical": 15
+            },
+            "full-at": 99,
+            "format": "{capacity}% {time}",
+            "format-time": "{H}:{M}",
+        },
+
+        "custom/storage_root": {
+            "format": "/ {}",
+            "format-alt": "{percentage}% ",
+            "format-alt-click": "click-right",
+            "return-type": "json",
+            "interval": 60,
+            "exec": "~/.config/waybar/modules/storage_root.sh"
+        },
+
+        "custom/storage_home": {
+            "format": "/home {}",
+            "format-alt": "{percentage}% ",
+            "format-alt-click": "click-right",
+            "return-type": "json",
+            "interval": 60,
+            "exec": "~/.config/waybar/modules/storage_home.sh"
+        }
+}
