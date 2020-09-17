@@ -26,8 +26,8 @@ exec swaymsg focus output eDP-1
 ################################
 # STARTUP EXECUTIONS ###########
 ###############################
-exec kitty --title dropdown_term -o font_size=12
-exec redshift -c /home/sergiu/.config/redshift/redshift.conf
+exec kitty --title dropdown_term -o font_size=11
+exec redshift -c /home/smooth/.config/redshift/redshift.conf
 exec --no-startup-id mako --font=Hack\ Nerd\ Font\ 12 --default-timeout 10000 --width=360 --height=100
 exec spotify
 
@@ -35,7 +35,7 @@ exec swaymsg 'workspace $ws1; exec firefox -p Work'
 exec swaymsg 'workspace $ws2; exec $term'
 
 exec swaymsg 'workspace $ws5; exec firefox -p Home'
-exec swaymsg 'workspace $ws5; exec $term'
+exec swaymsg 'workspace $ws6; exec $term'
 
 exec swaymsg 'workspace $ws10; exec signal-desktop'
 exec swaymsg 'workspace $ws10; exec firefox -p Whatsapp --ssb https://web.whatsapp.com'
