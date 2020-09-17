@@ -242,6 +242,10 @@ bindsym $mod+period exec "pactl set-sink-volume @DEFAULT_SINK@ +1000"
 bindsym $mod+comma exec "pactl set-sink-volume @DEFAULT_SINK@ -1000"
 bindsym $mod+slash exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
+# Control the backlight
+bindsym $mod+i exec "blight -d backlight/intel_backlight set -1200"
+bindsym $mod+o exec "blight -d backlight/intel_backlight set +1200"
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -318,7 +322,7 @@ input type:keyboard {
 }
 
 input type:pointer {
-    scroll_factor 5.0
+    scroll_factor 3.0
     dwt enable
 }
 
