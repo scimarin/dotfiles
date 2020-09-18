@@ -39,6 +39,7 @@ exec swaymsg 'workspace $ws6; exec $term'
 
 exec swaymsg 'workspace $ws10; exec signal-desktop'
 exec swaymsg 'workspace $ws10; exec firefox -p Whatsapp --ssb https://web.whatsapp.com'
+exec swaymsg 'workspace $ws10; layout tabbed'
 
 # idle configuration
 # exec swayidle -w \
@@ -72,7 +73,6 @@ for_window [title="dropdown_term"] move scratchpad, border pixel 3, resize set 6
 for_window [class="Spotify"] move scratchpad, fullscreen enable
 for_window [class="mpv"] floating enable, sticky enable
 for_window [class="Signal"] move container to workspace $ws10
-for_window [class="code-oss"] move container to workspace $ws2
 for_window [app_id="pavucontrol"] floating enable, resize set 600 900
 for_window [title="Whatsapp"] move container to workspace $ws10
 
@@ -212,14 +212,14 @@ mode "resize" {
     # up will shrink the containers height
     # down will grow the containers height
     bindsym $right resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
+    bindsym $down resize shrink height 10px
+    bindsym $up resize grow height 10px
     bindsym $left resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Right resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
+    bindsym Down resize shrink height 10px
+    bindsym Up resize grow height 10px
     bindsym Left resize grow width 10px
 
     # Return to default mode

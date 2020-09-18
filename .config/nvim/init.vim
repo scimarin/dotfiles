@@ -2,17 +2,19 @@
 nmap j gj
 nmap k gk
 
-"Source automatically
-autocmd BufWritePost .vimrc source %
+if !exists('g:vscode')
+      "Source automatically
+      autocmd BufWritePost .vimrc source %
 
-"Load file to last position of cursor
-autocmd BufReadPost *
-      \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
-      \ |   exe "normal! g`\""
-      \ | endif
+      "Load file to last position of cursor
+      autocmd BufReadPost *
+                        \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+                        \ |   exe "normal! g`\""
+                        \ | endif
 
-"Show vim file open name in tmux
-autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+      "Show vim file open name in tmux
+      autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+endif
 
 "Mappings
 let mapleader="\<Space>"
@@ -98,69 +100,71 @@ set cindent
 "set cinoptions=g+1,>2,h1,N-s
 set cinoptions=g+1,h1,N-s
 
-"Install plug
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+if !exists('g:vscode')
+      "Install plug
+      if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+            silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                              \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+            autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+      endif
+
+      call plug#begin()
+      " consistent vimscript
+      Plug 'google/vim-maktaba'
+
+      " intellisense
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+      " coc config
+      inoremap <silent><expr> <TAB>
+                        \ pumvisible() ? "\<C-n>" :
+                        \ <SID>check_back_space() ? "\<TAB>" :
+                        \ coc#refresh()
+      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+      function! s:check_back_space() abort
+            let col = col('.') - 1
+            return !col || getline('.')[col - 1] =~# '\s'
+      endfunction
+
+      " use <c-space> to trigger completion
+      inoremap <silent><expr> <c-space> coc#refresh()
+
+      " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+      " position. Coc only does snippet and additional edit on confirm.
+      if has('patch8.1.1068')
+            " Use `complete_info` if your (Neo)Vim version supports it.
+            inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+      else
+            imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+      endif
+
+      " Use `[g` and `]g` to navigate diagnostics
+      nmap <silent> [g <Plug>(coc-diagnostic-prev)
+      nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+      " GoTo code navigation.
+      nmap <silent> gd <Plug>(coc-definition)
+      nmap <silent> gy <Plug>(coc-type-definition)
+      nmap <silent> gi <Plug>(coc-implementation)
+      nmap <silent> gr <Plug>(coc-references)
+
+      " Use K to show documentation in preview window.
+      nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+      function! s:show_documentation()
+            if (index(['vim','help'], &filetype) >= 0)
+                  execute 'h '.expand('<cword>')
+            else
+                  call CocAction('doHover')
+            endif
+      endfunction
+
+      Plug 'autozimu/LanguageClient-neovim', {
+                        \ 'branch': 'next',
+                        \ 'do': './install.sh'
+                        \ }
 endif
-
-call plug#begin()
-" consistent vimscript
-Plug 'google/vim-maktaba'
-
-" intellisense
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" coc config
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1] =~# '\s'
-endfunction
-
-" use <c-space> to trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-" position. Coc only does snippet and additional edit on confirm.
-if has('patch8.1.1068')
-  " Use `complete_info` if your (Neo)Vim version supports it.
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
@@ -240,12 +244,14 @@ let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<leader>>'
 
-"Theming
-set termguicolors "sets to true colors
-let &t_ut=''
+if !exists('g:vscode')
+      "Theming
+      set termguicolors "sets to true colors
+      let &t_ut=''
 
-set background=dark
-colorscheme gruvbox
+      set background=dark
+      colorscheme gruvbox
+endif
 
 "let hr=(strftime('%H'))
 "if hr >=18
