@@ -187,8 +187,12 @@ Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'BurntSushi/ripgrep'
 Plug 'sheerun/vim-polyglot' " language packs
 
+" verilog support
 Plug 'jmcneal/verilog-support'
 Plug 'vhda/verilog_systemverilog.vim'
+
+" vscode json support in neovim
+Plug 'neoclide/jsonc.vim'
 
 nnoremap <c-o> :FZF<cr>
 nnoremap <leader>l :Rg<cr>
