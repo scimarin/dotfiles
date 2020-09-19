@@ -4,5 +4,14 @@
     "vscode-neovim.neovimInitVimPaths.linux": "/home/smooth/.config/nvim",
     "vscode-neovim.neovimExecutablePaths.linux": "/home/smooth/nvim.appimage",
     "vscode-neovim.logPath": "/home/smooth/.config/nvim",
-    "vscode-neovim.logOutputToConsole": true
+    "vscode-neovim.logOutputToConsole": true,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "[typescript]": {
+        "editor.formatOnType": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2
+    },
+    "editor.fontSize": 12,
+    "todo-tree.tree.showScanModeButton": false,
+    "typescript.updateImportsOnFileMove.enabled": "always"
 }
