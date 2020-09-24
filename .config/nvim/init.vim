@@ -191,7 +191,7 @@ Plug 'sheerun/vim-polyglot' " language packs
 Plug 'jmcneal/verilog-support'
 Plug 'vhda/verilog_systemverilog.vim'
 
-" vscode json support in neovim
+" don't display json comments as errors
 Plug 'neoclide/jsonc.vim'
 
 nnoremap <c-o> :FZF<cr>
