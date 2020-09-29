@@ -20,6 +20,7 @@ for_window [class="vlc"] floating enable
 # enable multihead, set resolutions
 output eDP-1 pos 0 0 res 1920x1080 
 output eDP-1 scale 1
+output eDP-1 bg ~/Pictures/wallpaper.jpg fit
 #bg /home/sergiu/Pictures/highway.jpg center
 
 exec swaymsg focus output eDP-1
@@ -269,9 +270,8 @@ workspace $ws10 output eDP-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id exec swaylock, mode "default"
+    bindsym l exec --no-startup-id exec swaylock -f -i /home/smooth/Pictures/wallpaper.jpg, mode "default"
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
-    bindsym s exec --no-startup-id suspend, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
     bindsym Shift+s exec --no-startup-id sudo systemctl poweroff -i, mode "default"
 

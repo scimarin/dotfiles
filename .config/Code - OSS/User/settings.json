@@ -9,9 +9,10 @@
     "[typescript]": {
         "editor.formatOnType": true,
         "editor.insertSpaces": true,
-        "editor.tabSize": 2
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-    "editor.fontSize": 12,
     "todo-tree.tree.showScanModeButton": false,
-    "typescript.updateImportsOnFileMove.enabled": "always"
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.fontSize": 12
 }
