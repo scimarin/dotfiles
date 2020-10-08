@@ -18,10 +18,13 @@ for_window [class="vlc"] floating enable
 ################################
 
 # enable multihead, set resolutions
-output eDP-1 pos 0 0 res 1920x1080 
+output HDMI-A-1 pos 0 0 res 1920x1200
+output HDMI-A-1 scale 1
+output HDMI-A-1 bg ~/Pictures/wallpaper.jpg fill
+
+output eDP-1 pos 1920 600 res 1920x1080
 output eDP-1 scale 1
 output eDP-1 bg ~/Pictures/wallpaper.jpg fit
-#bg /home/sergiu/Pictures/highway.jpg center
 
 exec swaymsg focus output eDP-1
 ################################
@@ -34,10 +37,8 @@ exec spotify
 exec lollypop
 
 exec swaymsg 'workspace $ws1; exec firefox -p Work'
-exec swaymsg 'workspace $ws2; exec $term'
 
 exec swaymsg 'workspace $ws5; exec firefox -p Home'
-exec swaymsg 'workspace $ws6; exec $term'
 
 exec swaymsg 'workspace $ws10; exec signal-desktop'
 exec swaymsg 'workspace $ws10; exec firefox -p Whatsapp --ssb https://web.whatsapp.com'
@@ -265,10 +266,8 @@ bar {
 }
 
 # set workspace outputs
-workspace $ws1 output eDP-1
-workspace $ws5 output eDP-1
-workspace $ws8 output eDP-1
-workspace $ws9 output eDP-1
+workspace $ws1 output HDMI-A-1
+workspace $ws5 output HDMI-A-1
 workspace $ws10 output eDP-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
