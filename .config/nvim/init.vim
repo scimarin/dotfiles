@@ -90,6 +90,8 @@ set nofoldenable
 set foldnestmax=10
 set nobackup
 set nowritebackup
+set timeoutlen=50
+set timeoutlen=5
 syntax on "Syntax highlighting
 
 " Display ASCII characters numerically
@@ -188,7 +190,6 @@ Plug 'BurntSushi/ripgrep'
 Plug 'sheerun/vim-polyglot' " language packs
 
 " verilog support
-Plug 'jmcneal/verilog-support'
 Plug 'vhda/verilog_systemverilog.vim'
 
 " don't display json comments as errors
