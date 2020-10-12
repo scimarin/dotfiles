@@ -90,8 +90,8 @@ set nofoldenable
 set foldnestmax=10
 set nobackup
 set nowritebackup
-set timeoutlen=50
-set timeoutlen=5
+set timeoutlen=1
+set timeoutlen=1
 syntax on "Syntax highlighting
 
 " Display ASCII characters numerically
