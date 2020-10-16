@@ -40,10 +40,6 @@ exec swaymsg 'workspace $ws1; exec firefox -p Work'
 
 exec swaymsg 'workspace $ws5; exec firefox -p Home'
 
-exec swaymsg 'workspace $ws10; exec signal-desktop'
-exec swaymsg 'workspace $ws10; exec firefox -p Whatsapp --ssb https://web.whatsapp.com'
-exec swaymsg 'workspace $ws10; layout tabbed'
-
 # idle configuration
 # exec swayidle -w \
 #	     timeout 900 'swaymsg "output * dpms off"' \
