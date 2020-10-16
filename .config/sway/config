@@ -33,8 +33,6 @@ exec swaymsg focus output eDP-1
 exec kitty --title dropdown_term -o font_size=11
 exec redshift -c /home/smooth/.config/redshift/redshift.conf
 exec --no-startup-id mako --font=Hack\ Nerd\ Font\ 12 --default-timeout 10000 --width=360 --height=100
-exec spotify
-exec lollypop
 
 exec swaymsg 'workspace $ws1; exec firefox -p Work'
 
