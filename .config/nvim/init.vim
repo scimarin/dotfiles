@@ -17,7 +17,7 @@ if !exists('g:vscode')
 endif
 
 "Mappings
-let mapleader="\<Space>"
+let mapleader = "\<Space>"
 noremap <leader>y "+y
 
 " Double esc to disable hlsearch
@@ -52,9 +52,9 @@ set ttimeoutlen=0
 "Indentation
 set autoindent
 set smartindent
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
+set tabstop=4
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set smarttab
 filetype plugin indent on

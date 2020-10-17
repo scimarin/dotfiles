@@ -4,14 +4,15 @@
 #
 font pango:Hack Nerd Font 11
 set $mod Mod4
+
 set $term kitty --listen-on=unix:/tmp/mykitty
-set $menu rofi -font "Hack Nerd Font Mono 12" -disable-history -hide-scrollbar -show drun
+set $menu rofi -show drun
+set $ssh rofi -show ssh
+set $sh rofi -show run
+
 focus_follows_mouse no
 for_window [class="^.*"] border pixel 1
 default_border pixel 1
-
-# specific window settings
-for_window [class="vlc"] floating enable
 
 ################################
 # MONITOR CONFIG ###############
@@ -24,24 +25,18 @@ output HDMI-A-1 bg ~/Pictures/wallpaper.jpg fill
 
 output eDP-1 pos 1920 600 res 1920x1080
 output eDP-1 scale 1
-output eDP-1 bg ~/Pictures/wallpaper.jpg fit
+output eDP-1 bg ~/Pictures/planes.jpg fit
 
-exec swaymsg focus output eDP-1
+# exec swaymsg focus output eDP-1
+exec swaymsg focus output HDMI-A-1
 ################################
 # STARTUP EXECUTIONS ###########
 ###############################
-exec kitty --title dropdown_term -o font_size=11
+exec kitty --title dropdown_term -o font_size=13
 exec redshift -c /home/smooth/.config/redshift/redshift.conf
 exec --no-startup-id mako --font=Hack\ Nerd\ Font\ 12 --default-timeout 10000 --width=360 --height=100
 
-exec swaymsg 'workspace $ws1; exec firefox -p Work'
-
-exec swaymsg 'workspace $ws5; exec firefox -p Home'
-
-# idle configuration
-# exec swayidle -w \
-#	     timeout 900 'swaymsg "output * dpms off"' \
-#	     resume 'swaymsg "output * dpms on"'
+exec swaymsg 'workspace $ws1; exec firefox -p Home'
 
 ################################
 # MACROS #######################
@@ -65,7 +60,6 @@ set $ws10 "10 "
 ################################
 # WINDOWS ######################
 ################################
-
 for_window [title="dropdown_term"] move scratchpad, border pixel 3, resize set 600 600
 for_window [class="Spotify"] move scratchpad, fullscreen enable
 for_window [app_id="lollypop"] move scratchpad, fullscreen enable
@@ -73,6 +67,7 @@ for_window [class="mpv"] floating enable, sticky enable
 for_window [class="Signal"] move container to workspace $ws10
 for_window [app_id="pavucontrol"] floating enable, resize set 600 900
 for_window [title="Whatsapp"] move container to workspace $ws10
+for_window [class="vlc"] floating enable
 
 ###############################
 # KEYBINDINGS ##################
@@ -82,6 +77,8 @@ for_window [title="Whatsapp"] move container to workspace $ws10
 bindsym $mod+Shift+q kill
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
+bindsym $mod+q exec $sh
+bindsym $mod+z exec $ssh
 
 ## Dropdown Spotify + Lollypop
 bindsym $mod+m [class="Spotify"] scratchpad show, fullscreen enable
@@ -261,7 +258,6 @@ bar {
 
 # set workspace outputs
 workspace $ws1 output HDMI-A-1
-workspace $ws5 output HDMI-A-1
 workspace $ws10 output eDP-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
