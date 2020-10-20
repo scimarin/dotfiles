@@ -13,7 +13,7 @@ if !exists('g:vscode')
                         \ | endif
 
       "Show vim file open name in tmux
-      autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%"))
+      autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 endif
 
 "Mappings
@@ -52,9 +52,9 @@ set ttimeoutlen=0
 "Indentation
 set autoindent
 set smartindent
-set tabstop=4
-set softtabstop=2
-set shiftwidth=2
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
 set expandtab
 set smarttab
 filetype plugin indent on
