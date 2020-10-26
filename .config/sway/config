@@ -25,7 +25,7 @@ output HDMI-A-1 bg ~/Pictures/wallpaper.jpg fill
 
 output eDP-1 pos 1920 600 res 1920x1080
 output eDP-1 scale 1
-output eDP-1 bg ~/Pictures/planes.jpg fit
+output eDP-1 bg ~/Pictures/plane.jpg fill
 
 # exec swaymsg focus output eDP-1
 exec swaymsg focus output HDMI-A-1
