@@ -17,8 +17,9 @@ if !exists('g:vscode')
 endif
 
 "Mappings
-let mapleader = "\<Space>"
-noremap <leader>y "+y
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+noremap <Leader>y "+y
 
 " Double esc to disable hlsearch
 nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
@@ -44,10 +45,6 @@ nnoremap <M-d> :bp\|bd #<CR>
 " Move line up/down
 nnoremap <Leader>j ddp
 nnoremap <Leader>k ddkP
-
-" Make key reactions instant
-set timeoutlen=1000
-set ttimeoutlen=0
 
 "Indentation
 set autoindent
@@ -90,17 +87,13 @@ set nofoldenable
 set foldnestmax=10
 set nobackup
 set nowritebackup
-set timeoutlen=1
-set timeoutlen=1
+set timeout
+set timeoutlen=3000
+set ttimeoutlen=100
 syntax on "Syntax highlighting
 
 " Display ASCII characters numerically
 set display+=uhex
-
-" indenation options for C++; respects Google C++ Style
-set cindent
-"set cinoptions=g+1,>2,h1,N-s
-set cinoptions=g+1,h1,N-s
 
 if !exists('g:vscode')
       "Install plug
@@ -109,65 +102,65 @@ if !exists('g:vscode')
                               \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
       endif
-
-      call plug#begin()
-      " consistent vimscript
-      Plug 'google/vim-maktaba'
-
-      " intellisense
-      Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-      " coc config
-      inoremap <silent><expr> <TAB>
-                        \ pumvisible() ? "\<C-n>" :
-                        \ <SID>check_back_space() ? "\<TAB>" :
-                        \ coc#refresh()
-      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-      function! s:check_back_space() abort
-            let col = col('.') - 1
-            return !col || getline('.')[col - 1] =~# '\s'
-      endfunction
-
-      " use <c-space> to trigger completion
-      inoremap <silent><expr> <c-space> coc#refresh()
-
-      " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-      " position. Coc only does snippet and additional edit on confirm.
-      if has('patch8.1.1068')
-            " Use `complete_info` if your (Neo)Vim version supports it.
-            inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-      else
-            imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-      endif
-
-      " Use `[g` and `]g` to navigate diagnostics
-      nmap <silent> [g <Plug>(coc-diagnostic-prev)
-      nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-      " GoTo code navigation.
-      nmap <silent> gd <Plug>(coc-definition)
-      nmap <silent> gy <Plug>(coc-type-definition)
-      nmap <silent> gi <Plug>(coc-implementation)
-      nmap <silent> gr <Plug>(coc-references)
-
-      " Use K to show documentation in preview window.
-      nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-      function! s:show_documentation()
-            if (index(['vim','help'], &filetype) >= 0)
-                  execute 'h '.expand('<cword>')
-            else
-                  call CocAction('doHover')
-            endif
-      endfunction
-
-      Plug 'autozimu/LanguageClient-neovim', {
-                        \ 'branch': 'next',
-                        \ 'do': './install.sh'
-                        \ }
 endif
 
+call plug#begin()
+
+" consistent vimscript
+Plug 'google/vim-maktaba'
+
+" intellisense
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" coc config
+inoremap <silent><expr> <TAB>
+                  \ pumvisible() ? "\<C-n>" :
+                  \ <SID>check_back_space() ? "\<TAB>" :
+                  \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+      let col = col('.') - 1
+      return !col || getline('.')[col - 1] =~# '\s'
+endfunction
+
+" use <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+      " Use `complete_info` if your (Neo)Vim version supports it.
+      inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+      imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+      if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+      else
+            call CocAction('doHover')
+      endif
+endfunction
+
+Plug 'autozimu/LanguageClient-neovim', {
+                  \ 'branch': 'next',
+                  \ 'do': './install.sh'
+                  \ }
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
 map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
@@ -182,9 +175,6 @@ let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper', '--lsp'] }
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" build with Bazel from inside vim
-Plug 'bazelbuild/vim-bazel'
-
 Plug 'junegunn/fzf.vim' " fuzzy finder
 Plug 'BurntSushi/ripgrep'
 Plug 'sheerun/vim-polyglot' " language packs
@@ -196,7 +186,7 @@ Plug 'vhda/verilog_systemverilog.vim'
 Plug 'neoclide/jsonc.vim'
 
 nnoremap <c-o> :FZF<cr>
-nnoremap <leader>l :Rg<cr>
+nnoremap <Leader>l :Rg<cr>
 
 " markdown support
 Plug 'plasticboy/vim-markdown'
@@ -211,9 +201,6 @@ Plug 'preservim/nerdtree'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'alvan/vim-closetag'
-
-" org-mode
-Plug 'jceb/vim-orgmode'
 
 "Plug 'ihsanturk/neuron.vim'
 
@@ -258,14 +245,3 @@ if !exists('g:vscode')
       colorscheme gruvbox
 endif
 
-"let hr=(strftime('%H'))
-"if hr >=18
-    "set background=dark
-    "colorscheme gruvbox
-"elseif hr >=8
-    "set background=light
-    "colorscheme PaperColor
-"elseif hr >= 0
-    "set background=dark
-    "colorscheme gruvbox
-"endif
