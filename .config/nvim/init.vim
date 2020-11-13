@@ -16,7 +16,10 @@ if !exists('g:vscode')
       autocmd BufReadPost,FileReadPost,BufNewFile * call system("tmux rename-window " . expand("%:t"))
 endif
 
-"Mappings
+" change current working directory unless in /tmp
+autocmd BufEnter * if expand("%:p:h") !~ '^/tmp' | silent! lcd %:p:h | endif
+
+" Mappings
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 noremap <Leader>y "+y
