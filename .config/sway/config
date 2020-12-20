@@ -1,0 +1,318 @@
+################################
+# BASIC DEFINITIONS ############
+################################
+#
+font pango:Hack Nerd Font 11
+set $mod Mod4
+
+set $term kitty --listen-on=unix:/tmp/mykitty
+set $menu rofi -show drun
+set $ssh rofi -show ssh
+set $sh rofi -show run
+
+focus_follows_mouse no
+for_window [class="^.*"] border pixel 1
+default_border pixel 1
+
+################################
+# MONITOR CONFIG ###############
+################################
+
+# enable multihead, set resolutions
+output eDP-1 pos 0 0 res 1920x1080
+output eDP-1 scale 1
+
+output HDMI-A-1 pos 1920 0 res 1920x1200
+output HDMI-A-1 scale 1
+
+# exec swaymsg focus output eDP-1
+exec swaymsg focus output HDMI-A-1
+################################
+# STARTUP EXECUTIONS ###########
+###############################
+exec kitty --title dropdown_term -o font_size=13
+exec redshift -c /home/smooth/.config/redshift/redshift.conf
+exec --no-startup-id mako --font=Hack\ Nerd\ Font\ 12 --default-timeout 10000 --width=360 --height=100
+
+exec swaymsg 'workspace $ws1; exec firefox -p Home'
+
+################################
+# MACROS #######################
+################################
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $ws1 "01 "
+set $ws2 "02 "
+set $ws3 "03 "
+set $ws4 "04 "
+set $ws5 "05 "
+set $ws6 "06 "
+set $ws7 "07 "
+set $ws8 "08 "
+set $ws9 "09 "
+set $ws10 "10 "
+
+################################
+# WINDOWS ######################
+################################
+for_window [title="dropdown_term"] move scratchpad, border pixel 3, resize set 600 600
+for_window [class="Spotify"] move scratchpad, fullscreen enable
+for_window [app_id="lollypop"] move scratchpad, fullscreen enable
+for_window [class="mpv"] floating enable, sticky enable
+for_window [class="Signal"] move container to workspace $ws10
+for_window [app_id="pavucontrol"] floating enable, resize set 600 900
+for_window [title="Whatsapp"] move container to workspace $ws10
+for_window [class="vlc"] floating enable
+
+###############################
+# KEYBINDINGS ##################
+################################
+
+# start terminal, kill focused window, start launcher
+bindsym $mod+Shift+q kill
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+bindsym $mod+q exec $sh
+bindsym $mod+z exec $ssh
+
+## Dropdown Spotify + Lollypop
+bindsym $mod+m [class="Spotify"] scratchpad show, fullscreen enable
+bindsym $mod+n [app_id="lollypop"] scratchpad show, fullscreen enable
+
+# screenshots
+bindsym Print exec grim -g "$(slurp -d)" - | wl-copy -t image/png && notify-send "Screenshot taken"
+bindsym control+Print exec grim -g "$(slurp -d)" - | 0x0
+
+# show clipboard contents
+bindsym $mod+Insert exec --no-startup-id notify-send -t 2000 "$(wl-paste)"
+
+# upload clipboard contents
+bindsym $mod+Shift+Insert exec wl-paste | 0x0
+
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
+
+# reload config file
+bindsym $mod+Shift+r reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+#
+# Workspaces:
+#
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
+
+#
+# Layout stuff:
+#
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
+
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
+
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+#
+# Scratchpad:
+#
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
+
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Use the scratchpad for the dropdown term
+bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, resize set 1400 800
+
+#
+# Resizing containers:
+#
+mode "resize" {
+    # left will shrink the containers width
+    # right will grow the containers width
+    # up will shrink the containers height
+    # down will grow the containers height
+    bindsym $right resize shrink width 10px
+    bindsym $down resize shrink height 10px
+    bindsym $up resize grow height 10px
+    bindsym $left resize grow width 10px
+
+    # Ditto, with arrow keys
+    bindsym Right resize shrink width 10px
+    bindsym Down resize shrink height 10px
+    bindsym Up resize grow height 10px
+    bindsym Left resize grow width 10px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+## System bindings
+# Increase Volume
+bindsym XF86AudioRaiseVolume exec "pactl set-sink-volume @DEFAULT_SINK@ +1000"
+
+# Decrease volume
+bindsym XF86AudioLowerVolume exec "pactl set-sink-volume @DEFAULT_SINK@ -1000"
+
+# Mute volume
+bindsym XF86AudioMute exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+
+bindsym $mod+period exec "pactl set-sink-volume @DEFAULT_SINK@ +1000"
+bindsym $mod+comma exec "pactl set-sink-volume @DEFAULT_SINK@ -1000"
+bindsym $mod+slash exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+
+# Control the backlight
+bindsym $mod+i exec "blight -d backlight/intel_backlight set -1200"
+bindsym $mod+o exec "blight -d backlight/intel_backlight set +1200"
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+
+bindsym $mod+p exec "playerctl play-pause"
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    swaybar_command waybar
+}
+
+# set workspace outputs
+workspace $ws1 output eDP-1
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id exec swaylock -f -i /home/smooth/Pictures/wallpaper.jpg, mode "default"
+    bindsym e exec --no-startup-id swaymsg exit, mode "default"
+    bindsym r exec --no-startup-id reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id sudo systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym control+Delete mode "$mode_system"
+
+################################
+# Bars and Colors ##############
+################################
+# set primary gruvbox colorscheme colors
+# bg
+set $bgd        #282828
+set $bgs        #32302f
+set $bg1        #3c3836
+set $bg2        #504945
+set $bg3        #665c54
+# fg
+set $fg3        #bdae93
+set $fg2        #d5c4a1
+set $fg1        #ebdbb2
+set $fg0        #fbf1c7
+# colors
+set $red        #cc241d
+set $green      #b8bb26
+set $yellow     #fabd2f
+set $blue       #83a598
+set $purple     #d3869b
+set $aqua       #83c07c
+set $orange     #d65d0e
+
+# class border          |border |backgr |text   |indicator  |child_border
+client.focused          $blue   $blue   $bgs    $orange     $blue
+client.focused_inactive $bg2    $bg2    $fg3    $fg3        $bg2
+client.unfocused        $bg2    $bgd    $fg3    $bg3        $bg2
+client.urgent           $red    $red    $bgs    $red        $red
+
+################################
+# Inputs ######################
+################################
+
+input type:keyboard {
+  repeat_delay 400
+  repeat_rate 50
+}
+
+input type:pointer {
+    scroll_factor 3.0
+    dwt enable
+}
+
+include /etc/sway/config.d/*

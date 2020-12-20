@@ -1,0 +1,30 @@
+configuration {
+    theme: "~/.config/rofi/themes/theme.rasi";
+    modi: "run,ssh";
+    width: 35;
+    lines: 20;
+    columns: 1;
+    font: "Hack Nerd Font Mono 12";
+    bw: 1;
+    fixed-num-lines: true;
+    icon-theme: "Papirus";
+    show-icons: true;
+    terminal: "kitty";
+    ssh-client: "ssh";
+    ssh-command: "{terminal} --detach {ssh-client} {host} [-p {port}]";
+    run-command: "{cmd}";
+    drun-show-actions: true;
+    drun-display-format: "{name}";
+    disable-history: false;
+    sidebar-mode: false;
+    parse-hosts: false;
+    parse-known-hosts: true;
+    tokenize: true;
+    hide-scrollbar: true;
+    fullscreen: false;
+    fake-transparency: true;
+    scrollbar-width: 0;
+    click-to-exit: true;
+    show-match: true;
+    max-history-size: 50;
+}
