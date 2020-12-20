@@ -171,6 +171,13 @@ if $SERVER == 0
                               \ 'branch': 'next',
                               \ 'do': './install.sh'
                               \ }
+
+            let g:LanguageClient_serverCommands = {
+                              \ 'python': ['/home/smooth/.local/bin/pyls'],
+                              \ 'javascript': ['/usr/bin/typescript-language-server', '--stdio'],
+                              \ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
+                              \ }
+
             nnoremap <F5> :call LanguageClient_contextMenu()<CR>
             map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
             map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
