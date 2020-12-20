@@ -1,7 +1,7 @@
 [{
     "output": "eDP-1",
         "layer": "bottom",
-        "height": 25,
+        "height": 30,
         "position": "top",
         "modules-left": ["sway/workspaces", "sway/mode"],
         "modules-center": ["sway/window"],
@@ -13,8 +13,8 @@
 
         "sway/workspaces": {
             "format": "{name}",
-            "disable-scroll-wraparound": true,
-            "enable-bar-scroll": true,
+            "disable-scroll-wraparound": false,
+            "enable-bar-scroll": false,
             "smooth-scrolling-threshold": 30
         },
 
@@ -24,7 +24,7 @@
         },
 
         "tray": {
-            "icon-size": 18
+            "icon-size": 20
         },
 
         "pulseaudio": {
@@ -73,7 +73,7 @@
         },
 
         "custom/storage_root": {
-            "format": "/ {}",
+            "format": "/: {}",
             "format-alt": "{percentage}% ",
             "format-alt-click": "click-right",
             "return-type": "json",
@@ -82,7 +82,7 @@
         },
 
         "custom/storage_home": {
-            "format": "/home {}",
+            "format": "/home: {}",
             "format-alt": "{percentage}% ",
             "format-alt-click": "click-right",
             "return-type": "json",
@@ -165,7 +165,7 @@
         },
 
         "custom/storage_root": {
-            "format": "/ {}",
+            "format": "/: {}",
             "format-alt": "{percentage}% ",
             "format-alt-click": "click-right",
             "return-type": "json",
@@ -174,7 +174,7 @@
         },
 
         "custom/storage_home": {
-            "format": "/home {}",
+            "format": "/home: {}",
             "format-alt": "{percentage}% ",
             "format-alt-click": "click-right",
             "return-type": "json",
