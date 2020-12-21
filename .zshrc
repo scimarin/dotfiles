@@ -26,16 +26,16 @@ source ~/.zplug/init.zsh
 autoload -U compinit && compinit
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'zdharma/fast-syntax-highlighting', \
-    hook-load:'FAST_HIGHLIGHT=()', defer:2
-    zplug "b4b4r07/zsh-vimode-visual", defer:3
-    zplug "zsh-users/zsh-autosuggestions"
-    zplug "zsh-users/zsh-completions"
-    zplug "plugins/rust", from:oh-my-zsh
-    zplug "plugins/cargo", from:oh-my-zsh
-    zplug "plugins/fzf", from:oh-my-zsh
-    zplug "MichaelAquilina/zsh-you-should-use"
-    zplug "wfxr/forgit"
+zplug 'zdharma/fast-syntax-highlighting', hook-load:'FAST_HIGHLIGHT=()', defer:2
+zplug "b4b4r07/zsh-vimode-visual", defer:3
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "plugins/rust", from:oh-my-zsh
+zplug "plugins/cargo", from:oh-my-zsh
+zplug "plugins/fzf", from:oh-my-zsh
+zplug "MichaelAquilina/zsh-you-should-use"
+zplug "wfxr/forgit"
+zplug "~/.zsh", from:local
 
 # theme
 eval "$(starship init zsh)"
@@ -70,6 +70,7 @@ alias cat="bat --theme=zenburn --wrap character"
 alias find="fd"
 alias cloud="ssh smoothlife@hetzner -p 32349"
 alias glow="glow -p"
+alias archivebox="docker-compose run archivebox"
 
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
