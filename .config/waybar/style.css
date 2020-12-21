@@ -70,6 +70,13 @@ window#waybar.solo {
     min-width:  25px;
 }
 
+#custom-bitcoin {
+    padding:    0 5px;
+    margin: 5px 10px 5px 10px;
+    color:      rgba(0, 0, 0, 1);
+    background-color: rgba(255, 153, 0, 1);
+}
+
 #pulseaudio {
     color: rgba(38, 255, 0, 1);
 }

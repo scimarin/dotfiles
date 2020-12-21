@@ -5,7 +5,7 @@
         "position": "top",
         "modules-left": ["sway/workspaces", "sway/mode"],
         "modules-center": ["sway/window"],
-        "modules-right": ["custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray", "battery"],
+        "modules-right": ["custom/bitcoin", "custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray", "battery"],
 
         "sway/window": {
             "max-length": 50
@@ -88,6 +88,12 @@
             "return-type": "json",
             "interval": 60,
             "exec": "~/.config/waybar/modules/storage_home.sh"
+        },
+
+        "custom/bitcoin": {
+            "format": "₿ {}€",
+            "interval": 1,
+            "exec": "~/.config/waybar/modules/bitcoin.py"
         }
 },
 {
