@@ -167,26 +167,6 @@ if $SERVER == 0
                   endif
             endfunction
 
-            Plug 'autozimu/LanguageClient-neovim', {
-                              \ 'branch': 'next',
-                              \ 'do': './install.sh'
-                              \ }
-
-            let g:LanguageClient_serverCommands = {
-                              \ 'python': ['/home/smooth/.local/bin/pyls'],
-                              \ 'javascript': ['/usr/bin/typescript-language-server', '--stdio'],
-                              \ 'typescript': ['/usr/bin/typescript-language-server', '--stdio'],
-                              \ }
-
-            nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-            map <Leader>lk :call LanguageClient#textDocument_hover()<CR>
-            map <Leader>lg :call LanguageClient#textDocument_definition()<CR>
-            map <Leader>lr :call LanguageClient#textDocument_rename()<CR>
-            map <Leader>lf :call LanguageClient#textDocument_formatting()<CR>
-            map <Leader>lb :call LanguageClient#textDocument_references()<CR>
-            map <Leader>la :call LanguageClient#textDocument_codeAction()<CR>
-            map <Leader>ls :call LanguageClient#textDocument_documentSymbol()<CR>
-
             " highlight the symbol and its references when holding the cursor.
             autocmd CursorHold * silent call CocActionAsync('highlight')
 
