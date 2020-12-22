@@ -69,11 +69,11 @@
             },
             "full-at": 99,
             "format": "{capacity}% {time}",
-            "format-time": "{H}:{M}",
+            "format-time": "{H}h{M}m",
         },
 
         "custom/storage_root": {
-            "format": "/: {}",
+            "format": "/:{}",
             "format-alt": "{percentage}% ",
             "format-alt-click": "click-right",
             "return-type": "json",
@@ -82,7 +82,7 @@
         },
 
         "custom/storage_home": {
-            "format": "/home: {}",
+            "format": "/home:{}",
             "format-alt": "{percentage}% ",
             "format-alt-click": "click-right",
             "return-type": "json",
