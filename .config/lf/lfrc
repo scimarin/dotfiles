@@ -116,6 +116,7 @@ cmd open ${{
       application/pdf|application/epub+zip ) bgopen zathura "$fx";;
       application/pgp-signature) $EDITOR "$fx";;
       inode/symlink            ) open "$(readlink -f $fx)";;
+      application/vnd.openxmlformats-officedocument.spreadsheetml.sheet) visidata $fx;;
       *) for f in $fx; do $OPENER $f>/dev/null 2>&1 & done;;
     esac
   }
