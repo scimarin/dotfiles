@@ -94,7 +94,7 @@ set hidden              " show hidden buffers
 set foldlevelstart=1    " never fold
 set foldmethod=syntax
 set nofoldenable
-set foldnestmax=10
+set foldnestmax=1
 set nobackup
 set nowritebackup
 set timeout
@@ -154,7 +154,8 @@ if $SERVER == 0
             nmap <silent> gd <Plug>(coc-definition)
             nmap <silent> gy <Plug>(coc-type-definition)
             nmap <silent> gi <Plug>(coc-implementation)
-            nmap <silent> gr <Plug>(coc-references)
+            nmap <silent> gf <Plug>(coc-references)
+            nmap <silent> gr <Plug>(coc-rename)
 
             " use K to show documentation in preview window.
             nnoremap <silent> K :call <SID>show_documentation()<CR>
