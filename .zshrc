@@ -8,10 +8,12 @@ else
     export EDITOR='nvim'
 fi
 
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=~/.zsh_history
 DISABLE_CORRECTION="true"
+setopt SHARE_HISTORY        # share history between sessions
+setopt HIST_REDUCE_BLANKS   # remove useless blanks before commands
 
 KEYTIMEOUT=1
 
