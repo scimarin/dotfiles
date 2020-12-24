@@ -25,6 +25,7 @@ output eDP-1 bg ~/Photos/random/elysium.jpg fill
 
 output HDMI-A-1 pos 1920 0 res 1920x1200
 output HDMI-A-1 scale 1
+output HDMI-A-1 bg ~/Photos/random/elysium.jpg fill
 
 # exec swaymsg focus output eDP-1
 exec swaymsg focus output HDMI-A-1
