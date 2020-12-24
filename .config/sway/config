@@ -68,7 +68,7 @@ for_window [class="Signal"] move container to workspace $ws10
 for_window [app_id="pavucontrol"] floating enable, resize set 600 900
 for_window [title="Whatsapp"] move container to workspace $ws10
 for_window [class="vlc"] floating enable
-for_window [app_id="zenity"] floating enable, border pixel 3, resize set 300 150
+for_window [app_id="zenity"] floating enable, move position center, border pixel 3, resize set 300 150
 
 ###############################
 # KEYBINDINGS ##################
