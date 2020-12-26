@@ -36,8 +36,6 @@ exec kitty --title dropdown_term -o font_size=13
 exec redshift -c /home/smooth/.config/redshift/redshift.conf
 exec --no-startup-id mako --font=Hack\ Nerd\ Font\ 12 --default-timeout 10000 --width=360 --height=100
 
-exec swaymsg 'workspace $ws1; exec firefox -p Home'
-
 ################################
 # MACROS #######################
 ################################
@@ -255,9 +253,6 @@ bindsym $mod+p exec "playerctl play-pause"
 bar {
     swaybar_command waybar
 }
-
-# set workspace outputs
-workspace $ws1 output eDP-1
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
