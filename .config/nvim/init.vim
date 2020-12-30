@@ -93,8 +93,7 @@ set list                " shows invisible characters
 set hidden              " show hidden buffers
 set foldlevelstart=1    " never fold
 set foldmethod=syntax
-set nofoldenable
-set foldnestmax=1
+set foldnestmax=2
 set nobackup
 set nowritebackup
 set timeout
@@ -193,6 +192,7 @@ if $SERVER == 0
             Plug 'jiangmiao/auto-pairs'
             Plug 'tpope/vim-surround'
             Plug 'alvan/vim-closetag'           " close HTML tags automatically
+            Plug 'tmhedberg/SimpylFold'
 
             " closetag config
             let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
