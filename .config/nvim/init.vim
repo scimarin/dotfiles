@@ -93,7 +93,7 @@ set list                " shows invisible characters
 set hidden              " show hidden buffers
 set foldlevelstart=1    " never fold
 set foldmethod=syntax
-set foldnestmax=2
+set foldnestmax=1
 set nobackup
 set nowritebackup
 set timeout
