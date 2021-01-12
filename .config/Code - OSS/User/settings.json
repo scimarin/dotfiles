@@ -1,0 +1,18 @@
+{
+    "window.zoomLevel": 1,
+    "editor.fontFamily": "'Hack Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "vscode-neovim.neovimInitVimPaths.linux": "/home/smooth/.config/nvim",
+    "vscode-neovim.neovimExecutablePaths.linux": "/home/smooth/nvim.appimage",
+    "vscode-neovim.logPath": "/home/smooth/.config/nvim",
+    "vscode-neovim.logOutputToConsole": true,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "[typescript]": {
+        "editor.formatOnType": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "todo-tree.tree.showScanModeButton": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.fontSize": 16
+}

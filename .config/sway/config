@@ -2,54 +2,34 @@
 # BASIC DEFINITIONS ############
 ################################
 #
-font pango:Hack Nerd Font Mono 14
+font pango:Hack Nerd Font 14
 set $mod Mod4
+
 set $term kitty --listen-on=unix:/tmp/mykitty
-set $menu rofi -font "Hack Nerd Font Mono 16" -disable-history -hide-scrollbar -show drun
+set $menu rofi -show drun
+set $ssh rofi -show ssh
+set $sh rofi -show run
+
 focus_follows_mouse no
 for_window [class="^.*"] border pixel 1
 default_border pixel 1
-
-# specific window settings
-for_window [class="vlc"] floating enable
 
 ################################
 # MONITOR CONFIG ###############
 ################################
 
 # enable multihead, set resolutions
-output DP-2 pos 0 0 res 3840x2160 bg /home/sergiu/Pictures/highway.jpg center
+output DP-2 pos 0 0 res 3840x2160
 output DP-2 scale 1
-
-output HDMI-A-1 pos 3840 200 res 1920x1080
-output HDMI-A-1 transform 90
-output HDMI-A-1 scale 1
+#output DP-2 bg ~/Photos/random/elysium.jpg fill
 
 exec swaymsg focus output DP-2
 ################################
 # STARTUP EXECUTIONS ###########
 ###############################
-exec xset -b
 exec kitty --title dropdown_term -o font_size=14
-exec redshift -c /home/sergiu/.config/redshift/redshift.conf
-exec --no-startup-id mako --font=JetBrainsMono\ Nerd\ Font\ 20 --default-timeout 10000 --width=60 --height=350
-exec spotify
-
-exec swaymsg 'workspace $ws1; exec firefox -p Work'
-exec swaymsg 'workspace $ws2; exec code --folder-uri /home/sergiu/code/withthegrid/platform/'
-exec swaymsg 'workspace $ws3; exec $term'
-
-exec swaymsg 'workspace $ws5; exec firefox -p Home'
-
-exec swaymsg 'workspace $ws8; exec firefox -p Netdata --ssb https://hiddenaway.xyz/netdata/'
-
-exec swaymsg 'workspace $ws10; exec signal-desktop'
-exec swaymsg 'workspace $ws10; exec firefox -p Whatsapp --ssb https://web.whatsapp.com'
-
-# idle configuration
-# exec swayidle -w \
-#	     timeout 900 'swaymsg "output * dpms off"' \
-#	     resume 'swaymsg "output * dpms on"'
+exec redshift -c /home/smooth/.config/redshift/redshift.conf
+exec --no-startup-id mako --font=Hack\ Nerd\ Font\ 14 --default-timeout 10000 --width=360 --height=100
 
 ################################
 # MACROS #######################
@@ -73,15 +53,15 @@ set $ws10 "10 "
 ################################
 # WINDOWS ######################
 ################################
-
-for_window [app_id="stats"] move container to workspace $ws10, resize set height 400
 for_window [title="dropdown_term"] move scratchpad, border pixel 3, resize set 600 600
 for_window [class="Spotify"] move scratchpad, fullscreen enable
+for_window [app_id="lollypop"] move scratchpad, fullscreen enable
 for_window [class="mpv"] floating enable, sticky enable
 for_window [class="Signal"] move container to workspace $ws10
-for_window [class="code-oss"] move container to workspace $ws2
 for_window [app_id="pavucontrol"] floating enable, resize set 600 900
 for_window [title="Whatsapp"] move container to workspace $ws10
+for_window [class="vlc"] floating enable
+for_window [app_id="zenity"] floating enable, move position center, border pixel 3, resize set 300 150
 
 ###############################
 # KEYBINDINGS ##################
@@ -91,9 +71,15 @@ for_window [title="Whatsapp"] move container to workspace $ws10
 bindsym $mod+Shift+q kill
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
+bindsym $mod+q exec $sh
+bindsym $mod+z exec $ssh
 
-## Dropdown Spotify
+# Dropdown todo lits
+bindsym $mod+t exec zenity --entry --text= >> ~/inbox
+
+## Dropdown Spotify + Lollypop
 bindsym $mod+m [class="Spotify"] scratchpad show, fullscreen enable
+bindsym $mod+n [app_id="lollypop"] scratchpad show, fullscreen enable
 
 # screenshots
 bindsym Print exec grim -g "$(slurp -d)" - | wl-copy -t image/png && notify-send "Screenshot taken"
@@ -169,11 +155,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
-
-#
-# Layout stuff:
+# Layout stuff
 #
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
@@ -208,7 +190,7 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+minus move scratchpad
 
 # Use the scratchpad for the dropdown term
-bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, resize set 2200 1400
+bindsym $mod+u [title="dropdown_term"] scratchpad show, move position center, resize set 2000 1200
 
 #
 # Resizing containers:
@@ -219,14 +201,14 @@ mode "resize" {
     # up will shrink the containers height
     # down will grow the containers height
     bindsym $right resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
+    bindsym $down resize shrink height 10px
+    bindsym $up resize grow height 10px
     bindsym $left resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Right resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
+    bindsym Down resize shrink height 10px
+    bindsym Up resize grow height 10px
     bindsym Left resize grow width 10px
 
     # Return to default mode
@@ -249,6 +231,10 @@ bindsym $mod+period exec "pactl set-sink-volume @DEFAULT_SINK@ +1000"
 bindsym $mod+comma exec "pactl set-sink-volume @DEFAULT_SINK@ -1000"
 bindsym $mod+slash exec "pactl set-sink-mute @DEFAULT_SINK@ toggle"
 
+# Control the backlight
+bindsym $mod+i exec "blight -d backlight/intel_backlight set -1200"
+bindsym $mod+o exec "blight -d backlight/intel_backlight set +1200"
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -263,19 +249,10 @@ bar {
     swaybar_command waybar
 }
 
-# set workspace outputs
-workspace $ws1 output DP-2
-workspace $ws5 output DP-2
-
-workspace $ws8 output HDMI-A-1
-workspace $ws9 output HDMI-A-1
-workspace $ws10 output HDMI-A-1
-
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id exec swaylock, mode "default"
+    bindsym l exec --no-startup-id exec swaylock -f -i /home/smooth/Pictures/wallpaper.jpg, mode "default"
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
-    bindsym s exec --no-startup-id suspend, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
     bindsym Shift+s exec --no-startup-id sudo systemctl poweroff -i, mode "default"
 
@@ -326,8 +303,9 @@ input type:keyboard {
 }
 
 input type:pointer {
-    scroll_factor 5.0
+    scroll_factor 3.0
     dwt enable
 }
 
 include /etc/sway/config.d/*
+

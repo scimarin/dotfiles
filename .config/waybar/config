@@ -5,8 +5,8 @@
             "height": 30,
             "position": "top",
             "modules-left": ["sway/workspaces", "sway/mode"],
-            "modules-center": ["sway/window"],
-            "modules-right": ["custom/storage_root", "custom/storage_home", "custom/storage_extra", "network", "pulseaudio", "clock", "tray"],
+            "modules-center": [],
+            "modules-right": ["custom/eth", "custom/btc", "custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray"],
 
             "sway/window": {
                 "max-length": 50
@@ -14,8 +14,8 @@
 
             "sway/workspaces": {
                 "format": "{name}",
-                "disable-scroll-wraparound": true,
-                "enable-bar-scroll": true,
+                "disable-scroll-wraparound": false,
+                "enable-bar-scroll": false,
                 "smooth-scrolling-threshold": 30
             },
 
@@ -25,11 +25,11 @@
             },
 
             "tray": {
-                "icon-size": 18
+                "icon-size": 20
             },
 
             "pulseaudio": {
-                "format": "{volume}% {icon}",
+                "format": "{volume} {icon}",
                 "format-alt": "{volume} {icon}",
                 "format-alt-click": "click-right",
                 "format-muted": "",
@@ -46,21 +46,23 @@
                 "on-click": "pavucontrol"
             },
 
+            "backlight": {
+                "format": "{percent} ⚇"
+            },
+
             "network": {
-                "format": "{ipaddr} {icon}",
+                "format-wifi": "{icon}",
                 "format-alt": "{ipaddr}/{cidr} {icon}",
                 "format-alt-click": "click-right",
                 "format-icons": {
-                    "wifi": ["", "" ," "],
+                    "wifi": [" "],
                     "ethernet": [""],
-                    "disconnected": [""]
                 },
                 "tooltip": false,
-                "spacing": 15
             },
 
             "custom/storage_root": {
-                "format": "/ {}",
+                "format": "/:{}",
                 "format-alt": "{percentage}% ",
                 "format-alt-click": "click-right",
                 "return-type": "json",
@@ -69,7 +71,7 @@
             },
 
             "custom/storage_home": {
-                "format": "/home {}",
+                "format": "/home:{}",
                 "format-alt": "{percentage}% ",
                 "format-alt-click": "click-right",
                 "return-type": "json",
@@ -77,38 +79,16 @@
                 "exec": "~/.config/waybar/modules/storage_home.sh"
             },
 
-            "custom/storage_extra": {
-                "format": "/shared {}",
-                "format-alt": "{percentage}% ",
-                "format-alt-click": "click-right",
-                "return-type": "json",
-                "interval": 60,
-                "exec": "~/.config/waybar/modules/storage_shared.sh"
-            }
-    },
-    {
-        "output": "HDMI-A-1",
-            "layer": "bottom",
-            "height": 30,
-            "position": "top",
-            "modules-left": ["sway/workspaces"],
-            "modules-center": ["sway/window"],
-            "modules-right": ["clock"],
-
-            "sway/window": {
-                "max-length": 50
+            "custom/btc": {
+                "format": "₿ {}€",
+                "interval": 1,
+                "exec": "~/.config/waybar/modules/btc.py"
             },
-
-            "sway/workspaces": {
-                "format": "{name}",
-                "disable-scroll-wraparound": true,
-                "enable-bar-scroll": true,
-                "smooth-scrolling-threshold": 30
-            },
-
-            "clock": {
-                "interval": 60,
-                "format": "{:%d.%m.%y %a %H:%M}"
+            "custom/eth": {
+                "format": "Ξ {}€",
+                "interval": 1,
+                "exec": "~/.config/waybar/modules/eth.py"
             }
     }
 ]
+
