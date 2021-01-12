@@ -21,14 +21,14 @@ default_border pixel 1
 # enable multihead, set resolutions
 output DP-2 pos 0 0 res 3840x2160
 output DP-2 scale 1
-#output DP-2 bg ~/Photos/random/elysium.jpg fill
+output DP-2 bg ~/Pictures/wallpaper.jpg fill
 
 exec swaymsg focus output DP-2
 ################################
 # STARTUP EXECUTIONS ###########
 ###############################
 exec kitty --title dropdown_term -o font_size=14
-exec redshift -c /home/smooth/.config/redshift/redshift.conf
+exec redshift -c ~/.config/redshift/redshift.conf
 exec --no-startup-id mako --font=Hack\ Nerd\ Font\ 14 --default-timeout 10000 --width=360 --height=100
 
 ################################
@@ -251,7 +251,7 @@ bar {
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id exec swaylock -f -i /home/smooth/Pictures/wallpaper.jpg, mode "default"
+    bindsym l exec --no-startup-id exec swaylock -f -i ~/Pictures/wallpaper.jpg, mode "default"
     bindsym e exec --no-startup-id swaymsg exit, mode "default"
     bindsym r exec --no-startup-id reboot, mode "default"
     bindsym Shift+s exec --no-startup-id sudo systemctl poweroff -i, mode "default"

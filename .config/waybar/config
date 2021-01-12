@@ -5,8 +5,8 @@
             "height": 30,
             "position": "top",
             "modules-left": ["sway/workspaces", "sway/mode"],
-            "modules-center": [],
-            "modules-right": ["custom/eth", "custom/btc", "custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray"],
+            "modules-center": ["custom/eth", "custom/btc"],
+            "modules-right": ["custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray"],
 
             "sway/window": {
                 "max-length": 50

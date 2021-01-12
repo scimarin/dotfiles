@@ -95,7 +95,7 @@ window#waybar.solo {
 }
 
 #clock {
-    margin:     0px 10px 0px 10px;
+    margin:     0px 20px 0px 20px;
     min-width:  140px;
     color: rgba(255, 255, 255, 1);
 }
@@ -124,3 +124,6 @@ window#waybar.solo {
     background-color: rgba(252, 0, 0, 1);
 }
 
+#network {
+    margin:     0px 20px 0px 20px;
+}
