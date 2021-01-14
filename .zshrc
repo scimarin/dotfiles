@@ -63,7 +63,6 @@ alias ls="ls -CFhn --color=auto --group-directories-first"
 alias ll="ls -alF --color=auto --group-directories-first"
 alias la="ls -AFhNC --color=auto --group-directories-first"
 alias rsync="rsync --info=progress2"
-alias g='git'
 alias gti='git'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status"
