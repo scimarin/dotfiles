@@ -23,7 +23,11 @@ output DP-2 pos 0 0 res 3840x2160
 output DP-2 scale 1
 output DP-2 bg ~/Pictures/wallpaper.jpg fill
 
+output HDMI-A-1 pos 3840 350 res 1920x1080
+output HDMI-A-1 scale 1
+
 exec swaymsg focus output DP-2
+
 ################################
 # STARTUP EXECUTIONS ###########
 ###############################
@@ -62,6 +66,8 @@ for_window [app_id="pavucontrol"] floating enable, resize set 600 900
 for_window [title="Whatsapp"] move container to workspace $ws10
 for_window [class="vlc"] floating enable
 for_window [app_id="zenity"] floating enable, move position center, border pixel 3, resize set 300 150
+
+workspace $ws10 output HDMI-A-1
 
 ###############################
 # KEYBINDINGS ##################
