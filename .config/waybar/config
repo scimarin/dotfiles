@@ -6,7 +6,7 @@
             "position": "top",
             "modules-left": ["sway/workspaces", "sway/mode"],
             "modules-center": ["sway/window"],
-            "modules-right": ["custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray"],
+            "modules-right": ["custom/storage_root", "custom/storage_home", "custom/storage_shared", "network", "pulseaudio", "backlight","clock", "tray"],
 
             "sway/window": {
                 "max-length": 50
@@ -77,6 +77,15 @@
                 "return-type": "json",
                 "interval": 60,
                 "exec": "~/.config/waybar/modules/storage_home.sh"
+            },
+
+            "custom/storage_shared": {
+                "format": "/shared:{}",
+                "format-alt": "{percentage}% ",
+                "format-alt-click": "click-right",
+                "return-type": "json",
+                "interval": 60,
+                "exec": "~/.config/waybar/modules/storage_shared.sh"
             },
 
             "custom/btc": {
