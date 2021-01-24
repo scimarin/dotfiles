@@ -174,6 +174,27 @@ if $SERVER == 0
             Plug 'vhda/verilog_systemverilog.vim'     " verilog syntax highlighting
             Plug 'elzr/vim-json'
 
+            " C++ stuff (https://chmanie.com/post/2020/07/17/modern-c-development-in-neovim/)
+            "
+            " syntax highlighting for C++; uses the LSP server to parse
+            " through and highlight the code
+            Plug 'jackguo380/vim-lsp-cxx-highlight'
+            let g:cpp_class_scope_highlight = 1
+            let g:cpp_member_variable_highlight = 1
+            let g:cpp_class_decl_highlight = 1
+
+            Plug 'vim-syntastic/syntastic'
+            let g:syntastic_cpp_checkers = ['cpplint']
+            let g:syntastic_c_checkers = ['cpplint']
+            let g:syntastic_cpp_cpplint_exec = 'cpplint'
+            let g:syntastic_check_on_open = 1
+            let g:syntastic_check_on_wq = 0
+
+            Plug 'rhysd/vim-clang-format'
+            " this requires a project root scoped .clang-format file
+            nnoremap <Leader>f :<C-u>ClangFormat<CR>
+
+
             Plug 'junegunn/fzf.vim'                   " fuzzy finder
             Plug 'BurntSushi/ripgrep'                 " run ripgrep from inside vim
 
