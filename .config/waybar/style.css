@@ -65,7 +65,7 @@ window#waybar.solo {
 }
 
 #mode, #cpu, #memory, #network, #pulseaudio, #custom-storage_home, #custom-storage_extra, #custom-storage_root {
-    margin:     0px 5px 0px 5px;
+    margin:     0px 20px 0px 20px;
     min-width:  25px;
 }
 
