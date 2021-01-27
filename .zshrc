@@ -83,6 +83,8 @@ setopt share_history
 setopt prompt_subst
 unsetopt correct
 
+bindkey -v
+
 zstyle ':completion:*' menu select
 bindkey '^ ' autosuggest-accept
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bold,underline"
