@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+nvim +PlugInstall +PlugClean +PlugUpdate +UpdateRemotePlugins +CocUpdate +qa
+source $HOME/.zplug/init.zsh
+zplug update
+brew update
+brew upgrade
