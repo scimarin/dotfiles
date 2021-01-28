@@ -1,3 +1,6 @@
+export SERVER=0
+export LANG=en_US.UTF-8
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='vim'
@@ -5,10 +8,12 @@ else
     export EDITOR='nvim'
 fi
 
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=~/.zsh_history
 DISABLE_CORRECTION="true"
+setopt SHARE_HISTORY        # share history between sessions
+setopt HIST_REDUCE_BLANKS   # remove useless blanks before commands
 
 KEYTIMEOUT=1
 
@@ -23,16 +28,16 @@ source ~/.zplug/init.zsh
 autoload -U compinit && compinit
 
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-zplug 'zdharma/fast-syntax-highlighting', \
-    hook-load:'FAST_HIGHLIGHT=()', defer:2
-    zplug "b4b4r07/zsh-vimode-visual", defer:3
-    zplug "zsh-users/zsh-autosuggestions"
-    zplug "zsh-users/zsh-completions"
-    zplug "plugins/rust", from:oh-my-zsh
-    zplug "plugins/cargo", from:oh-my-zsh
-    zplug "plugins/fzf", from:oh-my-zsh
-    zplug "MichaelAquilina/zsh-you-should-use"
-    zplug "wfxr/forgit"
+zplug 'zdharma/fast-syntax-highlighting', hook-load:'FAST_HIGHLIGHT=()', defer:2
+zplug "b4b4r07/zsh-vimode-visual", defer:3
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "plugins/rust", from:oh-my-zsh
+zplug "plugins/cargo", from:oh-my-zsh
+zplug "plugins/fzf", from:oh-my-zsh
+zplug "MichaelAquilina/zsh-you-should-use"
+zplug "wfxr/forgit"
+zplug "~/.zsh", from:local
 
 # theme
 eval "$(starship init zsh)"
@@ -64,15 +69,13 @@ alias rsync="rsync --info=progress2"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gs="git status"
 alias gm="git commit -m"
-alias dropdown="kitty -T dropdown_term &"
 alias cat="bat --theme=zenburn"
 alias find="fd"
-
-alias cloud="ssh smoothlife@hetzner -p 32349"
-
-alias start_jupyter="sudo systemctl start docker-compose@jupyter.service"
-alias status_jupyter="sudo systemctl status docker-compose@jupyter.service"
-alias stop_jupyter="sudo systemctl stop docker-compose@jupyter.service"
+alias python="/usr/bin/python3"
+alias pip="/usr/bin/pip3"
+alias glow="glow -p"
+alias archivebox="docker-compose run archivebox"
+alias lt='launchctl'
 
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
@@ -84,9 +87,10 @@ setopt prompt_subst
 unsetopt correct
 
 bindkey -v
+bindkey '^R' history-incremental-search-backward
+
 
 zstyle ':completion:*' menu select
-bindkey '^ ' autosuggest-accept
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bold,underline"
 
 fe() (
@@ -105,6 +109,7 @@ LFCD="~/.config/lf/lfcd.sh"
 if [ -f "$LFCD" ]; then
  source "$LFCD"
 fi
+
 # Open lf
 source ~/.config/lf/lfcd.sh
 bindkey -s "^\\" 'lfcd\n'

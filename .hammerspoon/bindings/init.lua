@@ -28,21 +28,29 @@ end
 function increaseVolume()
   local speakers = getSpeakers()
   local volume = speakers:volume()
-  speakers:setOutputVolume(math.max(0, volume + 5))
+  speakers:setOutputVolume(math.min(100, volume + 5))
+end
+
+function decreaseBrightness()
+  local brightness = hs.brightness.get()
+  hs.brightness.set(math.max(0, brightness - 5))
+end
+
+function increaseBrightness()
+  local brightness = hs.brightness.get()
+  hs.brightness.set(math.min(100, brightness + 5))
 end
 
 ---------------------------------------------
--- start module -----------------------------
+-- module -----------------------------------
 ---------------------------------------------
 module.start = function()
   hs.hotkey.bind({"cmd"}, "space", function()
     local wf = hs.window.filter
     local filter = wf.new(false):setAppFilter('Terminal')
     local windows = filter:getWindows()
-    print(windows)
     local count = 0
     for _ in pairs(windows) do count = count + 1 end
-    print(count)
   end)
 
 
@@ -60,6 +68,9 @@ module.start = function()
 
   end)
 
+  hs.hotkey.bind({"cmd"}, "i", nil, decreaseBrightness, decreaseBrightness)
+  hs.hotkey.bind({"cmd"}, "o", nil, increaseBrightness, increaseBrightness)
+
   hs.hotkey.bind({"cmd"}, ",", nil, decreaseVolume, decreaseVolume)
   hs.hotkey.bind({"cmd"}, ".", nil, increaseVolume, increaseVolume)
 
@@ -74,17 +85,10 @@ module.start = function()
       app:activate()
     end
   end)
-
-
-  hs.hotkey.bind({"cmd"}, "q", function()
-    local app = hs.application.get("Terminal")
-    print(app)
-    hs.tabs.enableForApp(app)
-  end)
 end
 
 ---------------------------------------------
--- stop module ------------------------------
+-- module -----------------------------------
 ---------------------------------------------
 module.stop = function()
 end
