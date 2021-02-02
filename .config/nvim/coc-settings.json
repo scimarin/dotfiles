@@ -1,21 +1,22 @@
 {
     "languageserver": {
-        "haskell": {
-            "command": "hie-wrapper",
-            "args": ["--lsp"],
-            "rootPatterns": [
-                "*.cabal",
-                "stack.yaml",
-                "cabal.project",
-                "package.yaml"
-            ],
-            "filetypes": [
-                "hs",
-                "lhs",
-                "haskell"
-            ],
+        "ccls": {
+            "command": "ccls",
+            "args": ["--log-file=/tmp/ccls.log", "-v=1"],
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"],
+            "rootPatterns": [".ccls", "compile_commands.json"],
             "initializationOptions": {
-                "languageServerHaskell": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                },
+                "client": {
+                    "snippetSupport": true
+                },
+                "index": {
+                    "onChange": true
+                },
+                "highlight": {
+                    "lsRanges": true
                 }
             }
         }

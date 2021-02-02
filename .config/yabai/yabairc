@@ -1,0 +1,38 @@
+### STARTUP #######################
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+sudo yabai --load-sa --verbose
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+
+### CONFIG #######################
+yabai -m config layout bsp
+
+# new window spawns to the left if vertical split, or top if horizontal split
+yabai -m config window_placement first_child
+
+# set mouse interaction modifier key (default: fn)
+yabai -m config mouse_modifier fn
+
+# set modifier + left-click drag to move window (default: move)
+yabai -m config mouse_action1 move
+
+# set modifier + right-click drag to resize window (default: resize)
+yabai -m config mouse_action2 resize
+
+yabai -m config focus_follows_mouse off
+
+# floating windows are always on top (default: off)
+yabai -m config window_topmost on
+
+# disable window shadows
+yabai -m config window_shadow off
+
+
+# special windows
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^Spotify$" manage=off sticky=on
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^mpv$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^1Password$" manage=off

@@ -58,7 +58,7 @@ zplug load
 export LANG=en_US.UTF-8
 
 # Aliases
-alias vim="nvim"
+alias vim="/Users/neo/nvim-osx64/bin/nvim" # use nvim nightly to also have config supported in vscode
 alias zshconfig="nvim ~/.zshrc"
 alias readelf="readelf --all -W"
 alias l="ls -CFhn --color=auto --group-directories-first"
@@ -75,7 +75,8 @@ alias python="/usr/bin/python3"
 alias pip="/usr/bin/pip3"
 alias glow="glow -p"
 alias archivebox="docker-compose run archivebox"
-alias lt='launchctl'
+alias lctl='launchctl'
+alias opsignin='eval $(op signin collect_trading)'
 
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
@@ -88,7 +89,6 @@ unsetopt correct
 
 bindkey -v
 bindkey '^R' history-incremental-search-backward
-
 
 zstyle ':completion:*' menu select
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bold,underline"
@@ -117,3 +117,7 @@ bindkey -s "^\\" 'lfcd\n'
 [ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
 
 source ~/.zshenv
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+

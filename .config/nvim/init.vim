@@ -92,7 +92,7 @@ set listchars=tab:>·,trail:$,extends:>,precedes:<
 set list                " shows invisible characters
 set hidden              " show hidden buffers
 set foldlevelstart=20    " never fold
-set foldmethod=syntax
+set foldmethod=indent
 set foldnestmax=1
 set nobackup
 set nowritebackup
