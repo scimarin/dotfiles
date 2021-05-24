@@ -5,7 +5,7 @@
         "position": "top",
         "modules-left": ["sway/workspaces", "sway/mode"],
         "modules-center": [],
-        "modules-right": ["custom/eth", "custom/btc", "custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray", "battery"],
+        "modules-right": [ "custom/link", "custom/eth", "custom/btc", "custom/storage_root", "custom/storage_home", "network", "pulseaudio", "backlight","clock", "tray", "battery"],
 
         "sway/window": {
             "max-length": 50
@@ -99,6 +99,11 @@
             "format": "Ξ {}$",
             "interval": 1,
             "exec": "~/.config/waybar/modules/eth.py"
+        },
+        "custom/link": {
+            "format": "⬡ {}$",
+            "interval": 1,
+            "exec": "~/.config/waybar/modules/link.py"
         }
 },
 {
@@ -202,5 +207,10 @@
             "format": "Ξ {}€",
             "interval": 1,
             "exec": "~/.config/waybar/modules/eth.py"
+        },
+        "custom/link": {
+            "format": "⬡ {}$",
+            "interval": 1,
+            "exec": "~/.config/waybar/modules/link.py"
         }
 }]
