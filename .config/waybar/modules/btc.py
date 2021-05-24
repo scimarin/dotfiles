@@ -2,7 +2,7 @@
 
 import requests
 
-btceur = 'https://www.bitstamp.net/api/v2/ticker/btceur/'
+btceur = 'https://www.bitstamp.net/api/v2/ticker/btcusd/'
 
 data = requests.get(btceur).json()
 bid = float(data['bid'])

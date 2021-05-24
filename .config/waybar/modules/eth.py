@@ -2,7 +2,7 @@
 
 import requests
 
-etheur = 'https://www.bitstamp.net/api/v2/ticker/etheur/'
+etheur = 'https://www.bitstamp.net/api/v2/ticker/ethusd/'
 
 data = requests.get(etheur).json()
 bid = float(data['bid'])

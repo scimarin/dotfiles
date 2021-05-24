@@ -19,13 +19,13 @@ default_border pixel 1
 ################################
 
 # enable multihead, set resolutions
-output eDP-1 pos 1920 600 res 1920x1080
+output eDP-1 pos 0 0 res 1920x1080
 output eDP-1 scale 1
-output eDP-1 bg ~/Photos/random/elysium.jpg fill
+output eDP-1 bg ~/Photos/boards.jpg fill
 
-output HDMI-A-1 pos 0 0 res 1920x1200
+output HDMI-A-1 pos 1920 400 res 3840x2160
 output HDMI-A-1 scale 1
-output HDMI-A-1 bg ~/Photos/random/elysium.jpg fill
+output HDMI-A-1 bg ~/Photos/boards.jpg fill
 
 # exec swaymsg focus output eDP-1
 exec swaymsg focus output HDMI-A-1

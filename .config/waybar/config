@@ -91,12 +91,12 @@
         },
 
         "custom/btc": {
-            "format": "₿ {}€",
+            "format": "₿ {}$",
             "interval": 1,
             "exec": "~/.config/waybar/modules/btc.py"
         },
         "custom/eth": {
-            "format": "Ξ {}€",
+            "format": "Ξ {}$",
             "interval": 1,
             "exec": "~/.config/waybar/modules/eth.py"
         }
